@@ -24,8 +24,9 @@ export default function Game() {
       son.currentTime = 0
       son.play()
 
-      navigator.vibrate([100, 50, 100]);
-
+      if(navigator.vibrate){
+        navigator.vibrate([100, 50, 100]);
+      }
 
       setPosition({
         x: Math.floor(Math.random() * 100),
