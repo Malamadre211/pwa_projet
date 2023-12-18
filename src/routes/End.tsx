@@ -3,7 +3,9 @@ import './start.css'
 
 export default function Restart() {
     const navigate = useNavigate();
-    const {time} = useParams()
+    const {time} = useParams();
+    const timeValue = parseFloat(time || "0"); 
+    const timeInSeconds = timeValue / 1000;
     
     const handleStartClick = () => {
         navigate('/game');
@@ -14,7 +16,7 @@ export default function Restart() {
         <div className="end">
             <h1>The End</h1>
         <button className="buttonstart" onClick={handleStartClick}>RESTART</button>
-        <p>Vous avez mise {time}s à terminer la partie.</p>
+        <p>Vous avez mis {timeInSeconds}s à terminer la partie.</p>
         </div>
         </>
     )
