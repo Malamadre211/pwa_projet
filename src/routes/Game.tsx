@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import './start.css'
 
+const son = new Audio("/mixkit-arcade-retro-changing-tab-206.wav")
+
 export default function Game() {
     const [_, setTime] = useState(0);  
     const [dateDebut, setDateDebut] = useState<number | null>(null)
@@ -17,6 +19,14 @@ export default function Game() {
       if (count === 9) {
         navigate('/end/' + time);
       }
+      
+      son.pause()
+      son.currentTime = 0
+      son.play()
+
+      navigator.vibrate(100);
+
+
       setPosition({
         x: Math.floor(Math.random() * 100),
         y: Math.floor(Math.random() * 100)
@@ -39,6 +49,7 @@ export default function Game() {
   
       return () => clearInterval(interval);
     }, []);
+    
 
     return (
       <div className="game-container">
