@@ -24,7 +24,7 @@ export default function Game() {
       son.currentTime = 0
       son.play()
 
-      navigator.vibrate(100);
+      navigator.vibrate([100, 50, 100]);
 
 
       setPosition({
