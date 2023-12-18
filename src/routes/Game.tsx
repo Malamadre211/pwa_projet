@@ -8,7 +8,18 @@ export default function Game() {
     const [_, setTime] = useState(0);  
     const [dateDebut, setDateDebut] = useState<number | null>(null)
     const [count, setCount] = useState(0);
+    const [countryName, setCountry] = useState('');
     const navigate = useNavigate();
+
+    const getCountryName = (latitude: number, longitude: number) => {
+      const APICall = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+      fetch(APICall)
+        .then(response => response.json())
+        .then(data => {
+          const fetchedCountryName = data.country;
+          setCountry(fetchedCountryName); 
+        })
+    };
 
     useEffect(() => {
       setDateDebut(Date.now())
@@ -27,6 +38,11 @@ export default function Game() {
       if(navigator.vibrate){
         navigator.vibrate([100, 50, 100]);
       }
+
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        getCountryName(latitude, longitude);
+      });
 
       setPosition({
         x: Math.floor(Math.random() * 100),
@@ -57,6 +73,7 @@ export default function Game() {
         <div className="count">{count}/10</div>
         <div className="time">{dateDebut ? (Date.now() - dateDebut) / 1000 : 0}</div>
         <div className="ronde" style={divStyle} onClick={handleCompteurClick}></div>
+        <p>Country: {countryName}</p>
       </div>
     );
   };

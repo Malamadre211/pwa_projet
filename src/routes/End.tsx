@@ -16,7 +16,7 @@ export default function Restart() {
         <div className="end">
             <h1>The End</h1>
         <button className="startbutton" onClick={handleStartClick}>RESTART</button>
-        <p>Vous avez mis {timeInSeconds}s à terminer la partie.</p>
+        <p>It took you {timeInSeconds}s to finish the game.</p>
         </div>
         </>
     )
