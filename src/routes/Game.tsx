@@ -11,14 +11,22 @@ export default function Game() {
     const [countryName, setCountry] = useState('');
     const navigate = useNavigate();
 
-    const getCountryName = (latitude: number, longitude: number) => {
+    useEffect(() => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        getCountryName(latitude, longitude);
+      });
+    }, [])
+
+    const getCountryName = async (latitude: number, longitude: number) => {
+      console.log('latitude', latitude, 'longitude', longitude);
       const APICall = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
-      fetch(APICall)
-        .then(response => response.json())
-        .then(data => {
-          const fetchedCountryName = data.country;
-          setCountry(fetchedCountryName); 
-        })
+      const response = await fetch(APICall)
+      const data = await response.json()
+      const fetchedCountryName = data.countryName;
+      console.log(data);
+      
+      setCountry(fetchedCountryName); 
     };
 
     useEffect(() => {
@@ -39,10 +47,6 @@ export default function Game() {
         navigator.vibrate([100, 50, 100]);
       }
 
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        getCountryName(latitude, longitude);
-      });
 
       setPosition({
         x: Math.floor(Math.random() * 100),
@@ -62,7 +66,7 @@ export default function Game() {
     useEffect(() => {
       const interval = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
-      }, 120);
+      }, 133);
   
       return () => clearInterval(interval);
     }, []);
