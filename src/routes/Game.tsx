@@ -74,10 +74,10 @@ export default function Game() {
 
     return (
       <div className="game-container">
-        <div className="count">{count}/10</div>
+        <div className="country">{countryName}</div>
+        <div className="count">{count} / 10</div>
         <div className="time">{dateDebut ? (Date.now() - dateDebut) / 1000 : 0}</div>
         <div className="ronde" style={divStyle} onClick={handleCompteurClick}></div>
-        <p>Country: {countryName}</p>
       </div>
     );
   };
