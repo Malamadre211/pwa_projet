@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import './start.css'
 
 const son = new Audio("/mixkit-arcade-retro-changing-tab-206.wav")
@@ -11,6 +11,20 @@ export default function Game() {
     const [count, setCount] = useState(0);
     const [countryName, setCountry] = useState('');
     const navigate = useNavigate();
+
+    const gameContainerRef = useRef<HTMLDivElement>(null);
+  const [isFullscreen] = useState(false);
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+  
 
     useEffect(() => {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -74,11 +88,12 @@ export default function Game() {
     
 
     return (
-      <div className="game-container">
+      <div className="game-container" ref={gameContainerRef}>
         <div className="country">{countryName}</div>
         <div className="count">{count} / 10</div>
         <div className="time">{dateDebut ? (Date.now() - dateDebut) / 1000 : 0}</div>
         <div className="ronde" style={divStyle} onClick={handleCompteurClick}></div>
+        <button className="fullbutton" onClick={toggleFullScreen}>{isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}</button>
       </div>
     );
   };
