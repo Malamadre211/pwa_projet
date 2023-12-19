@@ -26,7 +26,7 @@ h1 {
 .count {
     justify-content: center;
     border: 5px solid rgb(192, 118, 226);
-    border-radius: 10px;
+    border-radius: 25px;
     background-color: white;
     color: black;
     width: 80px;
@@ -40,7 +40,7 @@ h1 {
     margin-top: 10px;
     justify-content: center;
     border: 5px solid rgb(192, 118, 226);
-    border-radius: 10px;
+    border-radius: 25px;
     background-color: white;
     color: black;
     width: 80px;
@@ -54,8 +54,14 @@ h1 {
 }
 
 .startbutton {
+    margin-left: 10px;
     border: 5px solid rgb(192, 118, 226);
-    border-radius: 10px;
+    border-radius: 25px;
+}
+
+.installbutton {
+    border: 5px solid rgb(192, 118, 226);
+    border-radius: 25px;
 }
 
 .country {
@@ -63,7 +69,7 @@ h1 {
     display: flex;
     justify-content: center;
     border: 5px solid rgb(192, 118, 226);
-    border-radius: 10px;
+    border-radius: 25px;
     background-color: white;
     color: black;
     width: 80px;
@@ -74,14 +80,13 @@ h1 {
 
 .country-container {
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
 
 }
 
-.share-button {
-    margin-top: 10px;
+.sharebutton {
+    margin-left: 10px;
     border: 5px solid rgb(192, 118, 226);
-    border-radius: 10px;
-    width: 90px;
+    border-radius: 25px;
 }

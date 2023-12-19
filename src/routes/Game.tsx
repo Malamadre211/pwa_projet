@@ -4,19 +4,6 @@ import './start.css'
 
 const son = new Audio("/mixkit-arcade-retro-changing-tab-206.wav")
 
-const share = async () => {
-  try {
-    await navigator.share({
-      title: 'Mag Game',
-      text: 'Check out this game!',
-      url: 'pwa-projet-zeta.vercel.app'
-    });
-    console.log('Shared successfully');
-  } catch (error) {
-    console.error('Error sharing:', error);
-  }
-};
-
 
 export default function Game() {
     const [_, setTime] = useState(0);  
@@ -92,7 +79,6 @@ export default function Game() {
         <div className="count">{count} / 10</div>
         <div className="time">{dateDebut ? (Date.now() - dateDebut) / 1000 : 0}</div>
         <div className="ronde" style={divStyle} onClick={handleCompteurClick}></div>
-        <button onClick={share} className="share-button">Share</button>
       </div>
     );
   };
